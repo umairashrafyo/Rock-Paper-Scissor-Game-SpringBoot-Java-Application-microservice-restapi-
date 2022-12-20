@@ -10,9 +10,7 @@ public class GameApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GameApplication.class, args);
-        GameController gc = new GameController();
-        String str = gc.getUsers();
-        System.out.print(str);
+
     }
 
 

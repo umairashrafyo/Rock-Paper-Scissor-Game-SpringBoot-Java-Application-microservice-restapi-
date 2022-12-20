@@ -1,6 +1,10 @@
 package com.example.game.service;
 
 public class GameResources {
+    public GameResources(){
+        System.outprintln("GameResources class created to fetch html pages stored in the form of string object");
+    }
+
     public String gameOverPart1="<!DOCTYPE html>\n" +
             "<html lang=\"en\">\n" +
             "<head>\n" +

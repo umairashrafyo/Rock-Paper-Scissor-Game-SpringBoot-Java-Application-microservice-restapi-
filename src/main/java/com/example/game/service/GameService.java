@@ -16,12 +16,15 @@ public class GameService {
     }
 
     public GameService(){
+        System.out.println("GameService Object created with initialization of gameMap object \n and mapping Rock ,Paper ,Scissor  with 0,1,2 respectively");
 
         gameMap.put(1,"Paper");
         gameMap.put(2,"Scissor");
         Random random = new Random();
+        System.out.println("Computer move is determined by using random.nextInt function between 0,1,2")
         this.computerResponse=gameMap.get(random.nextInt(2 - 0 + 1) + 0);
-        System.out.println("  computer:   "+computerResponse);
+        System.out.println(" computer move :   "+computerResponse);
+        System.out.println(" result Map object is initialized to compare the moves of player and computer mapping 0 with Losing of player, 1 with Tie and 2 with Won by player   ");
         resultMap.put(0,"Lose");
         resultMap.put(1,"Draw");
         resultMap.put(2,"Won");
@@ -31,6 +34,7 @@ public class GameService {
     }
     public String compareResponse(String playerOneResponse,String computerResponse){
         String ans="";
+        System.out.println("comparison function started comparing"+"playerOneResponse: "+playerOneResponse+" and computerResponse: +computerResponse)
         if(computerResponse==playerOneResponse){
             ans =resultMap.get(1);
         }
@@ -40,6 +44,7 @@ public class GameService {
         else if(computerResponse=="Scissor"&&playerOneResponse=="Paper"||computerResponse=="Paper"&&playerOneResponse=="Rock"||computerResponse=="Rock"&&playerOneResponse=="Scissor"){
             ans =resultMap.get(0);
         }
+        System.out.println(" after comparing the result is: "+ans);
         return ans;
 
     }

@@ -13,14 +13,18 @@ import com.example.game.service.GameResources;
 @RequestMapping("/")
 @Controller
 public class GameController {
+
     GameResources pageString=new GameResources();
+    System.out.println("Game Resources class created");
     @GetMapping
-    public String getUsers(){
+    public String getHomePage(){
+        System.out.println("Get homepage function mapped with home page is rendering...");
         return pageString.indexPage;
     }
 
     @GetMapping(path="/{userID}")
-    public String getUsers(@PathVariable String userID){
+    public String getResultPage(@PathVariable String userID){
+        System.out.println("Getresult page function mapped with result template will render ...");
         Integer input=1;
         if(userID=="rock"){
             input=0;
@@ -31,24 +35,10 @@ public class GameController {
         else if(userID=="scissor"){
             input=2;
         }
-
-
-        String display="";
-        System.out.println("Welcome to Rock Paper Scissor Game...");
-        System.out.println("--------------------------------------");
-        System.out.println("Rules are ...........");
-        System.out.println("1)Rock Beats Scissor");
-        System.out.println("2)Scissor Beats Paper");
-        System.out.println("3)Paper Beats Rock");
-        System.out.println("*Put 0 if you want to choose Rock");
-        System.out.println("*Put 1 if you want to choose Paper");
-        System.out.println("*Put 2 if you want to choose Scissor");
         GameService gameStart=new GameService();
         System.out.println("1)Player Move:  "+gameStart.playerMove(input)+"  ");
-        System.out.println("-------------AND-------------------");
-        System.out.println("--------------THE------------------");
-        System.out.println("----------------Winner---------------");
-        System.out.println("--------------ISS------------------");
+        System.out.println("1)Computer Move:  "+gameStart.getComputerResponse()+"  ");
+
         String output=gameStart.compareResponse(gameStart.playerMove(input),gameStart.getComputerResponse());
         if(output=="Lose"){
             output="Computer Won";
@@ -57,9 +47,9 @@ public class GameController {
             output="Player won against computer";
         }
         else{
-            output="  Tie  ";
+            output="  TIE  ";
         }
-        System.out.println("------------"+output+"--------");
+        System.out.println("Result of the game :  "+output);
         return pageString.gameOverPart1+output+pageString.gameOverPart2;
     }
 
